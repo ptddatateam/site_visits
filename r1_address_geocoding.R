@@ -1,4 +1,5 @@
 # Site visit pririization and data analysis
+# r1 address geocoding
 
 # Set Working directory to Github folder, change path for your machine
 setwd("~/GitHub/site_visits")

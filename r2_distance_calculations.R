@@ -5,7 +5,7 @@
 library(readr) # sane way of reading files
 library(tidyverse) # For all that is good and holy in this world
 library(ggmap) # spatial analysis
-library(gmapdistance) # distance calculations, install with devtools::install_github("rodazuero/gmapsdistance")
+library(gmapsdistance) # distance calculations, install with devtools::install_github("rodazuero/gmapsdistance")
 
 # Set Working directory to Github folder, change path for your machine
 setwd("~/GitHub/site_visits")
@@ -18,13 +18,37 @@ locations_df$latlong <- paste('"',locations_df$lat,'+',locations_df$lon,'"')
 
 # Keep just what we want
 locations_df <- locations_df %>%
-  dplyr::select(Grantee, origin=latlong) %>%
-  dplyr::mutate(destination=origin)
+  dplyr::select(grantee=Grantee, latlong)
 
 # Get all possible pairs
-locations_long <- expand.grid(locations_df)
+locations_df <- locations_df %>%
+  tidyr::unite("granteelatlong1",grantee:latlong) %>%
+  dplyr::mutate(granteelatlong2 = granteelatlong1) %>%
+  expand.grid() %>%
+  dplyr::filter(granteelatlong1 != granteelatlong2) %>%
+  arrange(granteelatlong1) %>%
+  tidyr::separate(granteelatlong1,c("grantee1","latlong1")) %>%
+  tidyr::separate(granteelatlong2,c("grantee2","latlong2"))
 
 
+
+
+# This is the right example from how to go from name and location to 
+# O-D name and location
+
+t1 <- c("a","b","c","d")
+t2 <- c("e","f","g","h")
+t3 <- as.data.frame(cbind(t2,t1)) %>%
+  dplyr::rename(name=t2, loc=t1) %>%
+  tidyr::unite("nameloc1",name:loc) %>%
+  dplyr::mutate(nameloc2 = nameloc1) %>%
+  expand.grid() %>%
+  dplyr::filter(nameloc1 != nameloc2) %>%
+  arrange(nameloc1) %>%
+  tidyr::separate(nameloc1,c("name1","loc1")) %>%
+  tidyr::separate(nameloc2,c("name2","loc2"))
+
+# Ready to try gmapsdistance again after using the example to reflect the actual data
 
 
 

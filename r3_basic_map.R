@@ -21,6 +21,10 @@ distances_df <- distances_df %>%
   dplyr::mutate(long_origin = as.numeric(long_origin)) %>%
   dplyr::mutate(lat_origin = as.numeric(lat_origin)) 
 
+# start with an ugly plot
+ugly_plot <- plot(lat_origin ~ long_origin,
+                  data = distances_df)
+
 # Tell stupid google about the api key, note, this is the location of mine
 api <- readLines("H:/personal/google.api")
 ggmap::register_google(key = api, account_type = "standard")  
@@ -49,3 +53,19 @@ get_stamenmap(site_visit_bbox,
         axis.ticks.y=element_blank())
 
 ggplot2::ggsave("graphics/basic_map.png")
+
+# And let's finish cleaning up the data frame for use in leaflet mapping
+# make the destination lat long useful again
+# Bring the long and lat back to two fields instead of one
+# and make new fields numeric
+# turn seconds into minutes and round up
+distances_df <- distances_df %>%
+  tidyr::separate(latlong2, 
+                  c("lat_destination","long_destination"),
+                  sep = "\\+") %>%
+  dplyr::mutate(long_destination = as.numeric(long_destination)) %>%
+  dplyr::mutate(lat_destination = as.numeric(lat_destination)) %>%
+  dplyr::mutate(minutes = ceiling(seconds/60)) %>%
+  dplyr::select(-seconds) %>%
+  dplyr::rename(grantee_origin = grantee1) %>%
+  dplyr::rename(grantee_destination = grantee2)

@@ -52,4 +52,4 @@ locations_df <- locations %>%
   ggmap::mutate_geocode(full_address)
 
 # Export list of addresses for giggles
-write.csv(locations_df, "data/locations_df.csv")
+write.csv(locations_df, "data/locations_df.csv", row.names = FALSE)

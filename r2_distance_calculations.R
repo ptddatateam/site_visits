@@ -70,4 +70,4 @@ distances_df <- distances_df %>%
   dplyr::distinct()
 
 # export the table of grantees and distances
-write.csv(distances_df, "data/distances_df.csv")
+write.csv(distances_df, "data/distances_df.csv", row.names = FALSE)

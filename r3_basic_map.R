@@ -71,4 +71,4 @@ distances_df <- distances_df %>%
   dplyr::rename(grantee_destination = grantee2)
 
 # write out DF as grantee to be used in leaflet mapping
-write.csv(distances_df, "data/grantee_df.csv")
+write.csv(distances_df, "data/grantee_df.csv", row.names = FALSE)

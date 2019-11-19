@@ -109,10 +109,11 @@ shinyApp(
 )
 
 
-
+# Not run
 # output table
-site_visit_travel_time <- grantee_df %>%
-  dplyr::filter(minutes<60) %>%
-  dplyr::arrange(grantee_origin, minutes) %>%
-  dplyr::select(grantee_origin, grantee_destination, miles, minutes)
-write.csv(site_visit_travel_time, "site_visit_travel_time.csv")
+# site_visit_travel_time <- grantee_df %>%
+#  dplyr::filter(minutes<60) %>%
+#  dplyr::arrange(grantee_origin, minutes) %>%
+#  dplyr::select(grantee_origin, grantee_destination, miles, minutes)
+#write.csv(site_visit_travel_time, "site_visit_travel_time.csv")
+

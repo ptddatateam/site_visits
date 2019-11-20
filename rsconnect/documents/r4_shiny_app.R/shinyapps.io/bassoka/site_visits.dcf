@@ -5,9 +5,9 @@ account: bassoka
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1495497
-bundleId: 2601685
+bundleId: 2604565
 url: https://bassoka.shinyapps.io/site_visits/
-when: 1574198251.93135
+when: 1574274003.47354
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: .RData|r1_address_geocoding.R|r2_distance_calculations.R|r3_basic_map.R|README.md|data/distances_df.csv|data/locations_df.csv|graphics/basic_map.png
+ignoredFiles: .RData|r1_address_geocoding.R|r2_distance_calculations.R|r3_basic_map.R|r5_types_date_data.R|README.md|data/distances_df.csv|data/locations_df.csv|graphics/basic_map.png

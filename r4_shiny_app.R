@@ -10,16 +10,17 @@ library(leaflet.extras) # full screen control among other useful things
 library(shiny)
 
 # Set Working directory to Github folder, change path for your machine
-# setwd("~/GitHub/site_visits")
+setwd("~/GitHub/site_visits")
 
 # Bring in the clean data frame with distances
 grantee_df <- readr::read_csv("data/grantee_df.csv")
 
-# Bring in the data on visit type and date since last visit
-types <- openxlsx::read.xlsx("http://sharedot/eso/so/pubtcb/Docs/2019-11-08 - S_V Criteria Prioritization Draft.xlsx",
-                             startRow = 5,
-                             cols = 2:6,
-                             detectDates = TRUE) %>%
+# Bring in the types and date since last visit data
+# types_df <- readr::read_csv("data/types_df.csv") # if bringing it in from DF, but updateable version here
+types_df <- openxlsx::read.xlsx("http://sharedot/eso/so/pubtcb/Docs/2019-11-08 - S_V Criteria Prioritization Draft.xlsx",
+                                startRow = 5,
+                                cols = 2:6,
+                                detectDates = TRUE) %>%
   dplyr::rename(grantee = Grantee,
                 admin = Date.of.Last.Site.Visit,
                 capital = X3,
@@ -54,6 +55,12 @@ types <- openxlsx::read.xlsx("http://sharedot/eso/so/pubtcb/Docs/2019-11-08 - S_
                      values_from = days_since) %>%
   dplyr::select(grantee, admin, capital, drug, financial)
 
+# Join grantee and type DFs so can have popups for type and date since last visit
+# Hack to join DFs; simpler to do before it needs to be a function on the server side
+grantee_df <- merge(grantee_df, types_df, by.x = "grantee_origin", by.y = "grantee", all.x = TRUE)
+# And some badness for a stupidly wide data frame, but expediency wins here...
+grantee_df <- merge(grantee_df, types_df, by.x = "grantee_destination", by.y = "grantee", all.x = TRUE)
+
 # Make the shiny app
 shinyApp(
   
@@ -65,13 +72,12 @@ shinyApp(
     absolutePanel(id = "controls", class = "panel panel-default", fixed = FALSE,
                   draggable = TRUE, top = "5", left = "auto", right = "5", bottom = "auto",
                   width = 300, height = "auto",
-                  uiOutput("siteSelect")
+                  uiOutput("siteSelect"),
+                  img(src="wsdot-logo.png", width = 280)
     )
   ),
   
   server = function(input, output) {
-    
-    types2 <- reactive({types})
     
     filtered <- reactive({
       grantee_df[grantee_df$grantee_origin == input$siteName &
@@ -86,15 +92,9 @@ shinyApp(
       unique(filtered_single[,c(1:3)],)
     })
     
-    flitered_single <- reactive({
-      dplyr::inner_join(filtered_single, types2, by = c("grantee_origin" = "grantee"))
-    })
-    
     output$siteSelect <- renderUI({
       siteNames <- sort(unique(grantee_df$grantee_origin))
-      
       selectInput("siteName", "Grantee", choices = siteNames, selected = siteNames[8])
-
     })
     
     output$MapPlot1 <- renderLeaflet({
@@ -136,12 +136,13 @@ shinyApp(
                            lat = fdata_single$lat_origin,
                            radius = 20,
                            color = "#E69F00",
-                           popup = paste(fdata_single$grantee_origin, "<br>",
-                                         "Admin", fdata_single$admin,"<br>",
-                                         "Capital", fdata_single$capital,"<br>",
-                                         "Drug & alcohol", fdata_single$drug,"<br>",
-                                         "Financial", fdata_single$financial)) %>%
-                           #popup = as.character(fdata_single$grantee_origin)) %>%
+                           popup = paste(fdata_single$grantee_origin, "<br>","<br>",
+                                         "Days since last visit:","<br>",
+                                         "Admin:", fdata_single$admin.y,"<br>",
+                                         "Capital:", fdata_single$capital.y,"<br>",
+                                         "Drug & alcohol:", fdata_single$drug.y,"<br>",
+                                         "Financial:", fdata_single$financial.y)) %>%
+          #popup = as.character(fdata_single$grantee_origin)) %>%
           fitBounds(minLong,minLat,maxLong,maxLat)
       }else{
         MapPlot1_proxy %>%
@@ -151,13 +152,23 @@ shinyApp(
                            lat = fdata$lat_origin,
                            radius = 20,
                            color = "#E69F00",
-                           popup = as.character(fdata$grantee_origin)) %>%
+                           popup = paste(fdata$grantee_origin, "<br>","<br>",
+                                         "Days since last visit:","<br>",
+                                         "Admin:", fdata$admin.y,"<br>",
+                                         "Capital:", fdata$capital.y,"<br>",
+                                         "Drug & alcohol:", fdata$drug.y,"<br>",
+                                         "Financial:", fdata$financial.y)) %>%
           addCircleMarkers(lng = fdata$long_destination,
                            lat = fdata$lat_destination,
                            radius = 10,
                            color = "#56B4E9",
                            clusterOptions = markerClusterOptions(),
-                           popup = as.character(fdata$grantee_destination)) %>%
+                           popup = paste(fdata$grantee_origin, "<br>","<br>",
+                                         "Days since last visit:","<br>",
+                                         "Admin:", fdata$admin.x,"<br>",
+                                         "Capital:", fdata$capital.x,"<br>",
+                                         "Drug & alcohol:", fdata$drug.x,"<br>",
+                                         "Financial:", fdata$financial.x)) %>%
           fitBounds(minLong,minLat,maxLong,maxLat)
       }
       
@@ -174,5 +185,5 @@ shinyApp(
 #  dplyr::filter(minutes<60) %>%
 #  dplyr::arrange(grantee_origin, minutes) %>%
 #  dplyr::select(grantee_origin, grantee_destination, miles, minutes)
-#write.csv(site_visit_travel_time, "site_visit_travel_time.csv")
+#write.csv(site_visit_travel_time, "site_visit_travel_time.csv", row_names = FALSE)
 

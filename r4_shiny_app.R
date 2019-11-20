@@ -138,10 +138,10 @@ shinyApp(
                            color = "#E69F00",
                            popup = paste(fdata_single$grantee_origin, "<br>","<br>",
                                          "Days since last visit:","<br>",
-                                         "Admin:", fdata_single$admin.y,"<br>",
-                                         "Capital:", fdata_single$capital.y,"<br>",
-                                         "Drug & alcohol:", fdata_single$drug.y,"<br>",
-                                         "Financial:", fdata_single$financial.y)) %>%
+                                         "Admin:", fdata_single$admin.x,"<br>",
+                                         "Capital:", fdata_single$capital.x,"<br>",
+                                         "Drug & alcohol:", fdata_single$drug.x,"<br>",
+                                         "Financial:", fdata_single$financial.x)) %>%
           #popup = as.character(fdata_single$grantee_origin)) %>%
           fitBounds(minLong,minLat,maxLong,maxLat)
       }else{
@@ -154,21 +154,24 @@ shinyApp(
                            color = "#E69F00",
                            popup = paste(fdata$grantee_origin, "<br>","<br>",
                                          "Days since last visit:","<br>",
-                                         "Admin:", fdata$admin.y,"<br>",
-                                         "Capital:", fdata$capital.y,"<br>",
-                                         "Drug & alcohol:", fdata$drug.y,"<br>",
-                                         "Financial:", fdata$financial.y)) %>%
+                                         "Admin:", fdata$admin.x,"<br>",
+                                         "Capital:", fdata$capital.x,"<br>",
+                                         "Drug & alcohol:", fdata$drug.x,"<br>",
+                                         "Financial:", fdata$financial.x)) %>%
           addCircleMarkers(lng = fdata$long_destination,
                            lat = fdata$lat_destination,
                            radius = 10,
                            color = "#56B4E9",
                            clusterOptions = markerClusterOptions(),
-                           popup = paste(fdata$grantee_origin, "<br>","<br>",
+                           popup = paste(fdata$grantee_destination, "<br>","<br>",
+                                         "Travel:","<br>",
+                                         "Miles:",round(fdata$miles,1),"<br>",
+                                         "Minutes:",fdata$minutes,"<br>","<br>",
                                          "Days since last visit:","<br>",
-                                         "Admin:", fdata$admin.x,"<br>",
-                                         "Capital:", fdata$capital.x,"<br>",
-                                         "Drug & alcohol:", fdata$drug.x,"<br>",
-                                         "Financial:", fdata$financial.x)) %>%
+                                         "Admin:", fdata$admin.y,"<br>",
+                                         "Capital:", fdata$capital.y,"<br>",
+                                         "Drug & alcohol:", fdata$drug.y,"<br>",
+                                         "Financial:", fdata$financial.y)) %>%
           fitBounds(minLong,minLat,maxLong,maxLat)
       }
       
@@ -181,9 +184,20 @@ shinyApp(
 
 # Not run
 # output table
-# site_visit_travel_time <- grantee_df %>%
+#site_visit_travel_time <- grantee_df %>%
 #  dplyr::filter(minutes<60) %>%
 #  dplyr::arrange(grantee_origin, minutes) %>%
-#  dplyr::select(grantee_origin, grantee_destination, miles, minutes)
-#write.csv(site_visit_travel_time, "site_visit_travel_time.csv", row_names = FALSE)
+#  dplyr::select(grantee_origin, admin.x, capital.x, drug.x, financial.x,
+#                grantee_destination, admin.y, capital.y, drug.y, financial.y,
+#                miles, minutes) %>%
+#  dplyr::rename(admin_orig = admin.x, 
+#                capital_orig = capital.x,
+#                drug_orig = drug.x, 
+#                financial_orig = financial.x,
+#                admin_dest = admin.y, 
+#                capital_dest = capital.y,
+#                drug_dest = drug.y, 
+#                financial_dest = financial.y)
+#
+# write.csv(site_visit_travel_time, "site_visit_travel_time.csv", row.names = FALSE)
 

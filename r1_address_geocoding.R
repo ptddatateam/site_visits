@@ -10,11 +10,13 @@ library(tidyverse) # For all that is good and holy in this world
 library(ggmap) # geocoding and mapping
 
 # link to the data from Seth
-locations_url <- "http://sharedot/eso/so/pubtcb/Docs/19-21%20S_V%20Planning.xlsx"
+# locations_url <- "http://sharedot/eso/so/pubtcb/Docs/19-21%20S_V%20Planning.xlsx" # original file, using updated addresses in sheet below. 
+locations_url <- "http://sharedot/eso/so/pubtcb/Docs/2019-11-08 - S_V Criteria Prioritization Draft.xlsx"
 
 # Create a data frame from the data
 locations <- openxlsx::read.xlsx(locations_url,
-                       startRow = 8)
+                                 sheet = "SV All") # adding specification for sheet name, different from initial version. 
+                       #startRow = 8) # from older address sheet. don't need here. 
 
 # Just keep the address (useful) fields
 # locations <- locations %>%
@@ -24,7 +26,8 @@ locations <- openxlsx::read.xlsx(locations_url,
 locations <- locations[,c("Grantee",
                           "Mailing.Address",
                           "Mailing.Address.City",
-                          "Mailing.Address.State")]
+                          "Mailing.Address.State",
+                          "Mailing.Address.Zip")]
 
 # Clean up the address field to remove extranious information, eg suite numbers
 locations$Mailing.Address <- gsub("(.*),.*", "\\1", locations$Mailing.Address)
@@ -37,6 +40,7 @@ locations <- locations %>%
 locations$full_address <- paste(locations$Mailing.Address, 
                                 locations$Mailing.Address.City, 
                                 locations$Mailing.Address.State, 
+                                locations$Mailing.Address.Zip,
                                 sep = ", ")
 
 # Keep only the Grantee name and full address for the sake of a tidyer DF
@@ -53,23 +57,24 @@ locations_df <- locations %>%
 
 # Remove large Urban or small Rural grantees that are not subject to the site visit requirements for WSDOT
 # per email from Seth Stark and Steven Meyeroff on 20191119
+# Updated request on 20191218 to reinstate some of these
 locations_df <- locations_df %>%
-  dplyr::filter(!(Grantee == "Ben Franklin Transit" |
+  dplyr::filter(!(#Grantee == "Ben Franklin Transit" |
                     Grantee == "City of Selah" |
-                    Grantee == "City of Yakima" |
+                    #Grantee == "City of Yakima" |
                     Grantee == "Clark County Public Transportation Benefit Area (C - Tran)" |
-                    Grantee == "Community Action of Skagit County" |
-                    Grantee == "Entiat Valley Community Services (EVCS)" |
-                    Grantee == "Everett Transit" |
-                    Grantee == "King County Metro Transit" |
-                    Grantee == "Kitsap County Public Transportation Benefit Area Authority" |
-                    Grantee == "Lower Elwha Klallam Tribe" |
-                    Grantee == "Pierce Transit" |
+                    #Grantee == "Community Action of Skagit County" |
+                    #Grantee == "Entiat Valley Community Services (EVCS)" |
+                    #Grantee == "Everett Transit" |
+                    #Grantee == "King County Metro Transit" |
+                    #Grantee == "Kitsap County Public Transportation Benefit Area Authority" |
+                    #Grantee == "Lower Elwha Klallam Tribe" |
+                    #Grantee == "Pierce Transit" |
                     Grantee == "Samish Indian Nation" |
-                    Grantee == "Snohomish County Workforce Development Council" |
-                    Grantee == "Spokane Transit Authority" |
+                    #Grantee == "Snohomish County Workforce Development Council" |
+                    #Grantee == "Spokane Transit Authority" |
                     Grantee == "Stanwood Community & Senior Center" |
-                    Grantee == "Thurston County Public Benefit Transportation Area (Intercity Transit)" |
+                    #Grantee == "Thurston County Public Benefit Transportation Area (Intercity Transit)" |
                     Grantee == "Whatcom Transportation Authority" |
                     Grantee == "Yakima Valley Conference of Governments (YVCOG)"))
 

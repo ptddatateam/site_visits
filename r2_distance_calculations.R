@@ -45,6 +45,7 @@ TEST_gmapdistance <- gmapsdistance(origin = locations_df$latlong1,
                                    mode = "driving",
                                    key = api,
                                    shape = "long",
+                                   dep_date = "2019-12-24", # a Tuesday
                                    dep_time = "12:00:00")
 
 # Turn it into a data frame and keep just what is useful

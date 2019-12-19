@@ -71,9 +71,19 @@ shinyApp(
     leafletOutput("MapPlot1", width="100%", height="100%"),
     absolutePanel(id = "controls", class = "panel panel-default", fixed = FALSE,
                   draggable = TRUE, top = "5", left = "auto", right = "5", bottom = "auto",
-                  width = 300, height = "auto",
+                  width = "300", height = "auto",
                   uiOutput("siteSelect"),
-                  img(src="wsdot-logo.png", width = 280)
+                  #checkboxInput("ViewAllSites", "View all sites", FALSE),
+                  fluidRow(align = "center",
+                           sliderInput("slider1", 
+                                       label = "Drive time (minutes)", 
+                                       min = 0, 
+                                       max = 180, 
+                                       value = 60, 
+                                       width = "85%")),
+                  img(src="wsdot-logo.png", width = 280),
+                  fluidRow("Last updated on 2019-12-18" , align = "center"),
+                  fluidRow("From: 2019-11-08 - S_V Criteria Prioritization Draft.xlsx" , align = "center")
     )
   ),
   
@@ -81,7 +91,7 @@ shinyApp(
     
     filtered <- reactive({
       grantee_df[grantee_df$grantee_origin == input$siteName &
-                   grantee_df$minutes < 60,]
+                   grantee_df$minutes < input$slider1,]
     })
     
     filtered_single <- reactive({
@@ -106,7 +116,7 @@ shinyApp(
     
     MapPlot1_proxy <- leafletProxy("MapPlot1")
     
-    observeEvent(input$siteName, {
+    observeEvent(c(input$siteName,input$slider1), {
       
       fdata <- filtered()
       
@@ -136,6 +146,8 @@ shinyApp(
                            lat = fdata_single$lat_origin,
                            radius = 20,
                            color = "#E69F00",
+                           #label = fdata_single$grantee_origin,
+                           #labelOptions = labelOptions(noHide = T),
                            popup = paste(fdata_single$grantee_origin, "<br>","<br>",
                                          "Days since last visit:","<br>",
                                          "Admin:", fdata_single$admin.x,"<br>",
@@ -152,6 +164,8 @@ shinyApp(
                            lat = fdata$lat_origin,
                            radius = 20,
                            color = "#E69F00",
+                           label = fdata$grantee_origin,
+                           labelOptions = labelOptions(noHide = T),
                            popup = paste(fdata$grantee_origin, "<br>","<br>",
                                          "Days since last visit:","<br>",
                                          "Admin:", fdata$admin.x,"<br>",
@@ -163,6 +177,8 @@ shinyApp(
                            radius = 10,
                            color = "#56B4E9",
                            clusterOptions = markerClusterOptions(),
+                           label = fdata$grantee_destination,
+                           labelOptions = labelOptions(noHide = T),
                            popup = paste(fdata$grantee_destination, "<br>","<br>",
                                          "Travel:","<br>",
                                          "Miles:",round(fdata$miles,1),"<br>",

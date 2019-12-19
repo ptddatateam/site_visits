@@ -1,63 +1,75 @@
 "grantee","admin","capital","drug","financial"
-"Around the Sound LLC",NA,149,-11,NA
-"Asotin County Public Transportation Benefit Area",168,168,NA,NA
-"Catholic Community Services of Snohomish County",345,NA,NA,345
-"Catholic Community Services of Western Washington (King County)",736,NA,NA,257
-"Catholic Community Services of Western Washington (Pierce County)",253,NA,NA,253
-"Catholic Community Services of Western Washington (Thurston County)",253,NA,NA,253
-"Chelan-Douglas PTBA (Link)",161,161,NA,NA
-"City of Ellensburg",163,NA,NA,163
-"City of Longview",582,NA,NA,NA
-"City of Pullman",294,223,211,211
-"Clallam County Public Transportation Benefit Area",NA,470,NA,508
-"Coastal Community Action Program",630,NA,156,NA
-"Columbia County Transit Authority",212,212,231,212
-"Community Transit",NA,245,NA,NA
-"Council on Aging & Human Services, Inc.",293,211,NA,211
-"Cowlitz Indian Tribe",220,NA,NA,1071
-"ECHHO - Ecumenical Christian Helping Hands Organization",NA,NA,NA,426
-"Entrust Community Services ",454,NA,NA,357
-"Garfield County Transportation Authority",212,212,NA,212
-"Grant Transit Authority",161,161,231,161
-"Grays Harbor Transportation Authority",630,155,589,155
-"Hopelink",236,NA,NA,236
-"HopeSource",163,163,183,163
-"Human Services Council, Inc.",266,NA,NA,266
-"Island County Public Transportation Benefit Area Corporation",156,502,NA,502
-"Jamestown S'Klallam Tribe",345,NA,NA,345
-"Jefferson Transit Authority",470,470,247,470
-"Kalispel Indian Community of the Kalispel Reservation",147,147,NA,168
-"Klickitat County Senior Services",27,148,NA,392
-"Lewis Public Transportation Benefit Area",615,147,574,147
-"Lower Columbia Community Action Council, Inc.",510,NA,296,965
-"Lummi Tribe of the Lummi Reservation",232,NA,NA,232
-"Makah Tribal Council",344,NA,NA,344
-"Mason County Public Transportation Benefit Area",301,301,576,301
-"Mid-Columbia Economic Development District (MCEDD)",391,NA,NA,391
-"Mt. Si Senior Center",236,NA,NA,236
-"Northshore Senior Center ",345,345,NA,345
-"Okanogan County Transit Authority",162,162,265,NA
-"Okanogan County Transportation & Nutrition",162,162,NA,162
-"Olympic Community Action Programs (OlyCAP)",345,NA,NA,345
-"Pacific County Public Transportation Benefit Area",482,155,295,155
-"People For People",356,356,231,356
-"Pierce County Human Services",618,NA,NA,253
-"Puget Sound Educational Service District",224,NA,NA,224
-"Rural Resources Community Action",217,217,NA,217
-"San Juan County",253,NA,NA,253
-"Sauk-Suiattle Indian Tribe",231,NA,NA,231
-"Senior Services of Snohomish County",387,245,NA,387
-"Skagit Transit System",NA,244,NA,NA
-"Skamania County Senior Services",391,148,421,391
-"Sound Generations",289,NA,NA,257
-"Special Mobility Services, Inc.",147,147,NA,888
-"Spokane Tribe of Indians",218,218,NA,218
-"Squaxin Island Tribe",301,301,246,301
-"The Arc of Tri-Cities",251,NA,NA,167
-"Thurston Regional Planning Council",NA,NA,NA,210
-"Tri County Economic Development District",217,NA,NA,217
-"United Way of Pierce County",673,NA,NA,735
-"Valley Transit",NA,149,573,NA
-"Wahkiakum County Health and Human Services",482,NA,NA,957
-"Whatcom Council of Governments",265,NA,NA,265
-"White Pass Community Services Coalition  (WPCSC)",517,147,NA,147
+"Around the Sound LLC","N/A","196",NA,"N/A"
+"Asotin County Public Transportation Benefit Area",NA,"177","260","N/A"
+"Ben Franklin Transit","no ovrst","old vehicle","no ovrst","no ovrst"
+"Catholic Community Services of Snohomish County","373","N/A","N/A","373"
+"Catholic Community Services of Western Washington (King County)","764","N/A","N/A","285"
+"Catholic Community Services of Western Washington (Pierce County)","281","N/A","N/A","281"
+"Catholic Community Services of Western Washington (Thurston County)","281","N/A","N/A","281"
+"Chelan-Douglas PTBA (Link)","189","189","N/A","N/A"
+"City of Ellensburg (Central Transit)","191","N/A","N/A","191"
+"City of Longview","610","TBD","TBD","TBD"
+"City of Pullman","322","239","239","239"
+"City of Yakima","no ovrst","no ovrst","no ovrst","no ovrst"
+"Clallam County Public Transportation Benefit Area","498","498","536","498"
+"Coastal Community Action Program","658","N/A","N/A","184"
+"Columbia County Transit Authority","240","240","259","240"
+"Community Action of Skagit County","new","N/A","N/A","new"
+"Community Transit","N/A","273","N/A","N/A"
+"Council on Aging & Human Services, Inc.","321","239","N/A","239"
+"Cowlitz Indian Tribe","245","N/A","N/A","1099"
+"ECHHO - Ecumenical Christian Helping Hands Organization","454","N/A","N/A","454"
+"Entiat Valley Community Services (EVCS)","new","N/A","N/A","new"
+"Entrust Community Services ","482","N/A","N/A","385"
+"Everett Transit","no ovrst","no ovrst","no ovrst","no ovrst"
+"Garfield County Transportation Authority","240","240","N/A","240"
+"Grant Transit Authority","189","189","259","189"
+"Grays Harbor Transportation Authority","658","183","617","183"
+"Hopelink","264","N/A","N/A","264"
+"HopeSource","191","191","211","191"
+"Human Services Council, Inc.","294","N/A","N/A","294"
+"Island County Public Transportation Benefit Area Corporation","184","530","FTA Reivewed in 2018","530"
+"Jamestown S'Klallam Tribe","373","N/A","N/A","373"
+"Jefferson Transit Authority","498","498","275","498"
+"Kalispel Indian Community of the Kalispel Reservation","175","175","N/A","196"
+"King County Metro Transit","no ovrst","no ovrst","no ovrst","no ovrst"
+"Kitsap County Public Transportation Benefit Area Authority","no ovrst","no ovrst","no ovrst","no ovrst"
+"Klickitat County Senior Services","55","176","N/A","420"
+"Lewis Public Transportation Benefit Area (TWIN TRANSIT)","643","175","602","175"
+"Lower Columbia Community Action Council, Inc.","538","TBD","324","993"
+"Lower Elwha Klallam Tribe","N/A","yes","N/A","N/A"
+"Lummi Tribe of the Lummi Reservation","260","N/A","N/A","260"
+"Makah Tribal Council","372","N/A","N/A","372"
+"Mason County Public Transportation Benefit Area","329","329","604","329"
+"Mid-Columbia Economic Development District (MCEDD)","419","N/A","N/A","419"
+"Mt. Si Senior Center","264","N/A","N/A","264"
+"Northshore Senior Center ","373","373","N/A","373"
+"Okanogan County Transit Authority","190","190","293","N/A"
+"Okanogan County Transportation & Nutrition","190","190","N/A","190"
+"Olympic Community Action Programs (OlyCAP)","373","No Vehicles","N/A","373"
+"Pacific County Public Transportation Benefit Area","510","183","323","183"
+"People For People","384","384","259","384"
+"Pierce County Human Services","646","No Vehicles","N/A","281"
+"Pierce Transit","no ovrst","no ovrst","no ovrst","no ovrst"
+"Puget Sound Educational Service District","252","N/A","N/A","252"
+"Rural Resources Community Action","245","245","N/A","245"
+"San Juan County","281","No Vehicles","N/A","281"
+"Sauk-Suiattle Indian Tribe","259","N/A","N/A","259"
+"Senior Services of Snohomish County (Homage)","415","273","N/A","415"
+"Skagit Transit System","N/A","272","N/A","N/A"
+"Skamania County Senior Services","419","176","449","419"
+"Snohomish County Workforce Development Council","new","N/A","N/A","new"
+"Sound Generations","317","N/A","N/A","285"
+"Special Mobility Services, Inc.","175","175","N/A","916"
+"Spokane Transit Authority","no ovrst","no ovrst","no ovrst","no ovrst"
+"Spokane Tribe of Indians","246","246","FTA Reivewed in 2018. PTD conducted follow up and technical assistance.","246"
+"Squaxin Island Tribe","329","329","274","329"
+"The Arc of Tri-Cities","279","N/A","N/A","195"
+"Thurston County Public Benefit Transportation Area (Intercity Transit)","N/A","Yes","N/A","N/A"
+"Thurston Regional Planning Council",NA,"N/A","N/A","238"
+"Tri County Economic Development District","245","N/A","N/A","245"
+"United Way of Pierce County","701","N/A","N/A","763"
+"Valley Transit","N/A","177","601","N/A"
+"Wahkiakum County Health and Human Services","510","TBD","N/A","985"
+"Whatcom Council of Governments","293","N/A","N/A","293"
+"White Pass Community Services Coalition  (WPCSC)","545","175","N/A","175"
